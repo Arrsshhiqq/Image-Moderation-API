@@ -10,24 +10,30 @@ A FastAPI-based API for moderating images with bearer token authentication and a
    cd Image-Moderation-API
 
 2. Install Backend Dependencies
+   ```bash
    cd Backend
    pip install -r requirements.txt
 
 3. Set up environment variables: Copy .env.example to .env and update values
 
 4. Run with Docker:
+  ```bash
   docker compose up --build
 
 5. Access the API at http://localhost:7000/docs and the frontend at http://localhost:8000.
 
-API Endpoints
+## API Endpoints
+
 POST /auth/tokens: Create a new token (admin-only).
+
 GET /auth/tokens: List all tokens (admin-only).
+
 DELETE /auth/tokens/{token}: Delete a token (admin-only).
+
 POST /moderate: Upload an image for moderation.
 
-Running Locally
-
+## Running Locally
+```bash
 cd Backend
 uvicorn main:app --host 0.0.0.0 --port 7000 --reload
 cd Frontend

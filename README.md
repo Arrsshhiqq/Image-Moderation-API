@@ -20,6 +20,7 @@ A FastAPI-based API for moderating images with bearer token authentication and a
   ```bash
   docker compose up --build
 
+
 5. Access the API at http://localhost:7000/docs and the frontend at http://localhost:8000.
 
 ## API Endpoints

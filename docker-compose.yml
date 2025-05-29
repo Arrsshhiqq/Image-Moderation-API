@@ -15,5 +15,11 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+  frontend:
+    build:
+      context: ./Frontend
+    ports:
+      - "8000:8000"
 volumes:
   mongo-data:
+    name: mongo-data-volume

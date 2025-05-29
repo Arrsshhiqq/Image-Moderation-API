@@ -1,21 +1,16 @@
-let token = '';
-
-function setToken() {
-    token = document.getElementById('token').value;
-    alert('Token set!');
-}
-
-async function uploadImage() {
+async function moderate() {
+    const token = document.getElementById('token').value;
     const fileInput = document.getElementById('image');
+    const errorDiv = document.getElementById('error');
     const resultDiv = document.getElementById('result');
-    const file = fileInput.files[0];
-    if (!file || !token) {
-        resultDiv.textContent = 'Please set a token and select an image.';
+
+    if (!token || !fileInput.files[0]) {
+        errorDiv.textContent = 'Please provide a token and image';
         return;
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', fileInput.files[0]);
 
     try {
         const response = await fetch('http://localhost:7000/moderate/', {
@@ -23,9 +18,14 @@ async function uploadImage() {
             headers: { 'Authorization': `Bearer ${token}` },
             body: formData
         });
-        const result = await response.json();
-        resultDiv.textContent = JSON.stringify(result, null, 2);
+        const data = await response.json();
+        if (response.ok) {
+            errorDiv.textContent = '';
+            resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } else {
+            errorDiv.textContent = data.detail || 'Error moderating image';
+        }
     } catch (error) {
-        resultDiv.textContent = `Error: ${error.message}`;
+        errorDiv.textContent = 'Network error: ' + error.message;
     }
 }

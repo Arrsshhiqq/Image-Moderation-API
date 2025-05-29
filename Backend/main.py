@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import auth, moderate
+from Backend.routers import auth, moderate
 
 app = FastAPI(title="Image Moderation API")
 app.include_router(auth.router)

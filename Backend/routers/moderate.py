@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, File, UploadFile, HTTPException
-from utils import get_database, get_current_token
-from models import Usage
+from Backend.utils import get_database, get_current_token
+from Backend.models import Usage
 from datetime import datetime
 import random
 

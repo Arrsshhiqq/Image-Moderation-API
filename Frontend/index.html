@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Image Moderation</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .error { color: red; }
+        .result { margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <h1>Image Moderation API</h1>
-    <div>
-        <label>Token: <input type="text" id="token" placeholder="Enter bearer token"></label>
-        <button onclick="setToken()">Set Token</button>
-    </div>
-    <div>
-        <input type="file" id="image" accept="image/*">
-        <button onclick="uploadImage()">Upload Image</button>
-    </div>
-    <pre id="result"></pre>
+    <h1>Image Moderation</h1>
+    <input type="text" id="token" placeholder="Enter bearer token">
+    <input type="file" id="image" accept="image/jpeg,image/png">
+    <button onclick="moderate()">Upload</button>
+    <div id="error" class="error"></div>
+    <div id="result" class="result"></div>
     <script src="script.js"></script>
 </body>
 </html>
